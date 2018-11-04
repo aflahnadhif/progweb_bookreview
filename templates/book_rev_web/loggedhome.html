@@ -1,0 +1,26 @@
+{% extends 'book_rev_web/loggedbase.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Hi {{ username }}!</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+          {% for book in books %}
+          <div class="col-sm-4">
+            <div class="card text-center" style="width: 18rem; margin-bottom: 3em;">
+              <div class="card-body">
+                <h5 class="card-title">{{ book.bookname }}</h5>
+                <p class="card-text">{{ book.description }}</p>
+                <a href="/{{ book.id }}" class="btn btn-primary">Review it!</a>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

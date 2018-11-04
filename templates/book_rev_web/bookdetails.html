@@ -1,0 +1,45 @@
+{% extends 'book_rev_web/loggedbase.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">{{ book.bookname }}</h1>
+        <p class="lead">{{ book.description }}</p>
+        <hr class="my-4">
+        <p>{{ book.publishedyear }}</p>
+        <p>{{ book.author }}</p>
+
+        <form method="post" action="/postit/{{ book.id }}">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                <label for="description">Write your review!</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="" required style="height: 100px;">
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Post It</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Review</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for users, fixed_review in result %}
+            <tr>
+              <td>{{ users.username }}</td>
+              <td>{{ fixed_review.description }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% endblock %}

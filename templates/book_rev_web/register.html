@@ -1,0 +1,35 @@
+{% extends 'book_rev_web/base.html' %}
+
+{% block content %}
+    <div class="container" style="width: 50%;">
+        <div class="jumbotron">
+          <form method="post" action="/reg">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="inputAddress">Full Name</label>
+                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="" required>
+              </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                <label class="form-check-label" for="gridCheck">
+                  I agree with the terms and conditions
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+    </div>
+{% endblock %}
